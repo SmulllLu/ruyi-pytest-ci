@@ -4,7 +4,7 @@ WORKDIR /ruyi-pytest
 
 RUN apt-get update 
 
-RUN apt-get install -y coreutils util-linux yq grep procps bash sudo git llvm wget build-essential zstd locales && apt-get clean
+RUN apt-get install -y coreutils util-linux jq grep procps bash sudo git llvm wget build-essential zstd locales && apt-get clean
 
 FROM build
 ARG UNAME=testuser
