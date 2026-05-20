@@ -91,6 +91,8 @@ cd ruyi-pytest
 set +e
 python3 -m pytest 2>&1 | tee ../pytest.log
 pytest_status=${PIPESTATUS[0]}
+echo >> ../pytest.log
+echo "exit code: $pytest_status" >> ../pytest.log
 set -e
 echo
 echo "pytest exit code: $pytest_status"
@@ -117,7 +119,5 @@ echo "================= REPORT GEN END ================="
 echo
 
 echo "================= ARTIFACTS STORE BEGIN ================="
-#sudo mv ruyi-test-logs.tar.gz /artifacts/ruyi-test-${DISTRO_ID}-logs.tar.gz
-#sudo mv ruyi-test-logs_failed.tar.gz /artifacts/ruyi-test-${DISTRO_ID}-logs_failed.tar.gz
 sudo mv -v ruyi_report/*.md /artifacts/
 echo "================= ARTIFACTS STORE END ================="
