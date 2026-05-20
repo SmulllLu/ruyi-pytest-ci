@@ -89,14 +89,14 @@ cd ruyi-pytest
 python3 -m pytest --log-file=../pytest.log
 cd ..
 
-cat >> ruyi-litester-reports/report_my_configs.sh <<EOF
+cat >> ruyi-pytest-reports/report_my_configs.sh <<EOF
 TEST_LITESTER_PATH=$(pwd)
 TEST_START_TIME=${TEST_START_TIME}
 EOF
 
 DISTRO_ID=${DISTRO_ID}-$(uname -m)
-cp -v pytest.log ruyi-litester-reports/report_tmpl/26test_log.md
-bash ruyi-litester-reports/report_gen.sh ${DISTRO_ID}
+cp -v pytest.log ruyi-pytest-reports/report_tmpl/26test_log.md
+bash ruyi-pytest-reports/report_gen.sh ${DISTRO_ID}
 
 rm -f *.md
 
