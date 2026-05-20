@@ -13,6 +13,7 @@ RUN useradd -mG sudo -s /bin/bash $UNAME
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 WORKDIR /ruyi-pytest
 COPY . .
+ARG RUYI_VERSION
 RUN RUYI_VERSION="$RUYI_VERSION" ./docker/ruyi-bin-install.bash
 RUN chown -R $UNAME:$UNAME /ruyi-pytest
 USER $UNAME
