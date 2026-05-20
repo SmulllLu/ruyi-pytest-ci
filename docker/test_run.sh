@@ -89,10 +89,18 @@ debug_env
 echo "================= PYTEST RUN BEGIN ================="
 cd ruyi-pytest
 set +e
-python3 -m pytest 2>&1 | tee ../pytest.log
+LANG=en_US.UTF-8 python3 -m pytest 2>&1 | tee ../pytest.en_US.log
 pytest_status=${PIPESTATUS[0]}
-echo >> ../pytest.log
-echo "exit code: $pytest_status" >> ../pytest.log
+echo >> ../pytest.en_US.log
+echo "exit code: $pytest_status" >> ../pytest.en_US.log
+set -e
+echo
+echo "pytest exit code: $pytest_status"
+
+LANG=zh_CN.UTF-8 python3 -m pytest 2>&1 | tee ../pytest.zh_CN.log
+pytest_status=${PIPESTATUS[0]}
+echo >> ../pytest.zh_CN.log
+echo "exit code: $pytest_status" >> ../pytest.zh_CN.log
 set -e
 echo
 echo "pytest exit code: $pytest_status"
@@ -111,7 +119,8 @@ TEST_START_TIME=${TEST_START_TIME}
 EOF
 
 DISTRO_ID=${DISTRO_ID}-$(uname -m)
-cp -v pytest.log ruyi-pytest-reports/report_tmpl/26test_log.md
+cp -v pytest.en_US.log ruyi-pytest-reports/report_tmpl/26test_log.md
+cp -v pytest.zh_CN.log ruyi-pytest-reports/report_tmpl/27test_log.md
 bash ruyi-pytest-reports/report_gen.sh ${DISTRO_ID}
 
 rm -f *.md
