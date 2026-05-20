@@ -20,10 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         distro:
-          - debian_bookworm
           - debian_trixie
           - debian_sid
-          - ubuntu_jammy
           - ubuntu_noble
           - openeuler_2403_sp1
           - openeuler_2403_sp2
