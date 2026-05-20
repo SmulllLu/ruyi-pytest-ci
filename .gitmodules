@@ -1,6 +1,6 @@
 [submodule "ruyi-pytest"]
 	path = ruyi-pytest
 	url = https://github.com/ruyisdk-test/ruyi-pytest.git
-[submodule "docker/ruyi-pytest-reports"]
-	path = docker/ruyi-pytest-reports
+[submodule "ruyi-pytest-reports"]
+	path = ruyi-pytest-reports
 	url = https://github.com/ruyisdk-test/ruyi-pytest-reports.git
