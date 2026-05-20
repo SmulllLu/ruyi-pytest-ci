@@ -1,6 +1,6 @@
 FROM cyl18/revyosindocker AS build
 ARG ARCH
-WORKDIR /ruyi-litester
+WORKDIR /ruyi-pytest
 
 RUN apt-get update 
 
@@ -15,9 +15,9 @@ RUN groupadd -g $GID -o $UNAME
 RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME && usermod -aG sudo $UNAME
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-WORKDIR /ruyi-litester
+WORKDIR /ruyi-pytest
 COPY . .
-RUN chown -R $UNAME:$UNAME /ruyi-litester
+RUN chown -R $UNAME:$UNAME /ruyi-pytest
 USER $UNAME
 
 
