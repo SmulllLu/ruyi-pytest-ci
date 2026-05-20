@@ -119,8 +119,8 @@ TEST_START_TIME=${TEST_START_TIME}
 EOF
 
 DISTRO_ID=${DISTRO_ID}-$(uname -m)
-cp -v pytest.en_US.log ruyi-pytest-reports/report_tmpl/26test_log.md
-cp -v pytest.zh_CN.log ruyi-pytest-reports/report_tmpl/27test_log.md
+cp -v pytest.en_US.log ruyi-pytest-reports/report_tmpl/23test_log.md
+cp -v pytest.zh_CN.log ruyi-pytest-reports/report_tmpl/25test_log.md
 bash ruyi-pytest-reports/report_gen.sh ${DISTRO_ID}
 
 rm -f *.md
