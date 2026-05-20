@@ -13,17 +13,15 @@ on:
         default: "20260520"
 
 jobs:
-  litester:
-    runs-on: ubuntu-latest
+  litester-riscv64:
+    runs-on: ubuntu-24.04-riscv
 
     strategy:
       fail-fast: false
       matrix:
         distro:
-         #- debian_bookworm
           - debian_trixie
           - debian_sid
-          - ubuntu_jammy
           - ubuntu_noble
          #- openeuler_2403_sp1
          #- openeuler_2403_sp2
@@ -53,9 +51,6 @@ jobs:
           repository: ruyisdk-test/ruyi-pytest-reports
           path: ruyi-pytest-reports
 
-      - name: Set up QEMU for multi-arch emulation
-        uses: docker/setup-qemu-action@v2
-
       #- name: Free space on ARM runner
       #  run: |
       #    echo "Disk usage before cleanup:"
@@ -75,7 +70,7 @@ jobs:
 
       - name: Build test image for ${{ matrix.distro }}
         run: |
-          docker build --platform=linux/riscv64 \
+          docker build \
             --build-arg RUYI_VERSION="$RUYI_VERSION" \
             -f docker/distros/${{ matrix.distro }}.Dockerfile \
             -t ruyi-pytest:${{ matrix.distro }} .
@@ -83,7 +78,7 @@ jobs:
       - name: Run pytest in Docker (${{ matrix.distro }})
         run: |
           mkdir -p artifacts/${{ matrix.distro }}
-          docker run --rm --platform=linux/riscv64 \
+          docker run --rm \
             -e RUYI_VERSION \
             -e TEST_START_TIME \
             -e DISTRO_ID=${{ matrix.distro }} \
