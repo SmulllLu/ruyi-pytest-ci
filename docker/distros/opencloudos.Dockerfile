@@ -1,7 +1,7 @@
 FROM opencloudos/opencloudos9-minimal:latest AS builder
 WORKDIR /ruyi-pytest
 
-RUN dnf install -y git python3 python3-pexpect python3-pytest coreutils util-linux bash sudo wget make zstd glibc-locale-source xz bzip2
+RUN dnf install -y git python3 python3-pexpect python3-pytest coreutils util-linux bash sudo wget make zstd glibc-locale-source xz bzip2 lz4
 RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
 FROM builder

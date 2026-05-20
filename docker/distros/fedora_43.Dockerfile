@@ -4,7 +4,7 @@ WORKDIR /ruyi-pytest
 # RUN sed -e 's|^metalink=|#metalink=|g' -e 's|^#baseurl=http://download.example/pub/fedora/linux|baseurl=https://mirrors.ustc.edu.cn/fedora|g' -i.bak /etc/yum.repos.d/fedora.repo /etc/yum.repos.d/fedora-updates.repo
 
 
-RUN dnf install -y git python3 python3-pexpect python3-pytest coreutils util-linux bash sudo wget make zstd lz4 glibc-locale-source
+RUN dnf install -y git python3 python3-pexpect python3-pytest coreutils util-linux bash sudo wget make zstd lz4 unzip glibc-locale-source
 RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
 FROM builder
