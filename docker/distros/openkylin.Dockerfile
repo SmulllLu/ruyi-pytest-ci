@@ -3,8 +3,8 @@ ARG ARCH
 WORKDIR /ruyi-pytest
 
 
-RUN apt-get update && apt-get install -y git python3 python3-pytest python3-pip coreutils util-linux bash sudo wget build-essential zstd locales jq && apt-get clean
-RUN pip install pexpect
+RUN apt-get update && apt-get install -y git python3-full python3-pytest python3-pip coreutils util-linux bash sudo wget build-essential zstd locales jq && apt-get clean
+RUN pip install --break-system-packages pexpect
 RUN sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 FROM builder
