@@ -23,6 +23,7 @@ jobs:
           - debian_trixie
           - debian_sid
           - ubuntu_noble
+          - ubuntu_resolute
          #- openeuler_2403_sp1
          #- openeuler_2403_sp2
          #- openeuler_2503
