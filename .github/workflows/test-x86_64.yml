@@ -1,4 +1,4 @@
-name: Ruyi Litester (multi-distro)
+name: Ruyi Pytest (multi-distro)
 
 on:
   workflow_dispatch:

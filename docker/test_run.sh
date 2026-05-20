@@ -85,10 +85,21 @@ debug_env() {
 
 debug_env
 
+# run pytest
+echo "================= PYTEST RUN BEGIN ================="
 cd ruyi-pytest
-python3 -m pytest --log-file=../pytest.log
+set +e
+python3 -m pytest 2>&1 | tee ../pytest.log
+pytest_status=${PIPESTATUS[0]}
+set -e
+echo
+echo "pytest exit code: $pytest_status"
 cd ..
+echo "================= PYTEST RUN END ================="
+echo
 
+# get report
+echo "================= REPORT GEN BEGIN ================="
 cat >> ruyi-pytest-reports/report_my_configs.sh <<EOF
 TEST_LITESTER_PATH=$(pwd)
 TEST_START_TIME=${TEST_START_TIME}
@@ -99,7 +110,11 @@ cp -v pytest.log ruyi-pytest-reports/report_tmpl/26test_log.md
 bash ruyi-pytest-reports/report_gen.sh ${DISTRO_ID}
 
 rm -f *.md
+echo "================= REPORT GEN END ================="
+echo
 
+echo "================= ARTIFACTS STORE BEGIN ================="
 #sudo mv ruyi-test-logs.tar.gz /artifacts/ruyi-test-${DISTRO_ID}-logs.tar.gz
 #sudo mv ruyi-test-logs_failed.tar.gz /artifacts/ruyi-test-${DISTRO_ID}-logs_failed.tar.gz
-sudo mv ruyi_report/*.md /artifacts/
+sudo mv -v ruyi_report/*.md /artifacts/
+echo "================= ARTIFACTS STORE END ================="
