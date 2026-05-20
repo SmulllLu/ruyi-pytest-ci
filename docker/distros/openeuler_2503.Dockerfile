@@ -6,6 +6,7 @@ WORKDIR /ruyi-pytest
 
 RUN dnf upgrade -y && dnf install -y git python3 python3-pexpect python3-pytest coreutils util-linux grep procps bash sudo wget make zstd xz unzip jq
 RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && localedef -i zh_CN -f UTF-8 zh_CN.UTF-8
 
 FROM builder
 ARG UNAME=ruyisdk_test
