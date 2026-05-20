@@ -21,7 +21,7 @@ jobs:
       matrix:
         distro:
           - debian_trixie
-          - debian_sid
+         # - debian_sid # qemu-riscv64: QEMU internal SIGSEGV {code=128, addr=0}
           - ubuntu_noble
           - ubuntu_resolute
          #- openeuler_2403_sp1
