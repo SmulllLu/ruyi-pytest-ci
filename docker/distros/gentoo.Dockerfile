@@ -14,7 +14,6 @@ RUN echo 'FEATURES="${FEATURES} getbinpkg"'  >> /etc/portage/make.conf && echo '
 # j6 8G 内存会被 oom kill
 RUN emerge --color=n --getbinpkg --noreplace --autounmask=y dev-python/pexpect dev-python/pytest coreutils util-linux grep procps bash sudo wget make app-arch/zstd openssl
 RUN emerge --color=n --getbinpkg --noreplace --autounmask=y dev-vcs/git dev-build/make app-arch/tar
-RUN ./docker/ruyi-bin-install.bash
 
 FROM builder
 ARG UNAME=ruyisdk_test
@@ -23,6 +22,7 @@ RUN useradd -m -s /bin/bash $UNAME
 RUN echo 'ruyisdk_test ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 WORKDIR /ruyi-pytest
 COPY . .
+RUN ./docker/ruyi-bin-install.bash
 RUN chown -R $UNAME:$UNAME /ruyi-pytest
 USER $UNAME
 

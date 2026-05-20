@@ -5,7 +5,6 @@ WORKDIR /ruyi-pytest
 RUN apt-get update 
 
 RUN apt-get install -y coreutils util-linux yq grep procps bash sudo git llvm wget build-essential zstd locales && apt-get clean
-RUN ./docker/ruyi-bin-install.bash
 
 FROM build
 ARG UNAME=testuser
@@ -17,6 +16,7 @@ RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME && usermod -aG sudo $UNAME
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 WORKDIR /ruyi-pytest
 COPY . .
+RUN ./docker/ruyi-bin-install.bash
 RUN chown -R $UNAME:$UNAME /ruyi-pytest
 USER $UNAME
 
