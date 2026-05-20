@@ -6,6 +6,7 @@ WORKDIR /ruyi-pytest
 ENV DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" && apt-get install -y llvm-14-tools coreutils util-linux yq file expect sudo git make tar jq build-essential locales tzdata wget zstd && apt-get clean
 RUN sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+RUN ./docker/ruyi-bin-install.bash
 
 FROM builder
 ARG UNAME=ruyisdk_test

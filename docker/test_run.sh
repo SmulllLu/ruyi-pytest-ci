@@ -85,7 +85,6 @@ debug_env() {
 
 debug_env
 
-sudo ./docker/ruyi-bin-install.bash
 cd ruyi-pytest
 python3 -m pytest --log-file=../pytest.log
 cd ..
