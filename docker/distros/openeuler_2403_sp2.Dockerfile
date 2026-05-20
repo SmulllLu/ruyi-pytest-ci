@@ -14,7 +14,7 @@ RUN echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 WORKDIR /ruyi-pytest
 COPY . .
-RUN ./docker/ruyi-bin-install.bash
+RUN RUYI_VERSION="$RUYI_VERSION" ./docker/ruyi-bin-install.bash
 RUN chown -R $UNAME:$UNAME /ruyi-pytest
 USER $UNAME
 
