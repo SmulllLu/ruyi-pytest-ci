@@ -46,12 +46,6 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - name: Checkout ruyi-pytest-reports
-        uses: actions/checkout@v4
-        with:
-          repository: ruyisdk-test/ruyi-pytest-reports
-          path: ruyi-pytest-reports
-
       - name: Build test image for ${{ matrix.distro }}
         run: |
           docker build \

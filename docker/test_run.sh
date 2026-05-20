@@ -102,6 +102,9 @@ echo
 echo "================= REPORT GEN BEGIN ================="
 cat >> ruyi-pytest-reports/report_my_configs.sh <<EOF
 TEST_LITESTER_PATH=$(pwd)
+TEST_PYTEST_CI_HASH=`git --git-dir=./.git rev-parse HEAD`
+TEST_PYTEST_HASH=`git --git-dir=./ruyi-pytest/.git rev-parse HEAD`
+TEST_PYTEST_REPORTS_HASH=`git --git-dir=./ruyi-pytest-reports/.git rev-parse HEAD`
 TEST_START_TIME=${TEST_START_TIME}
 EOF
 

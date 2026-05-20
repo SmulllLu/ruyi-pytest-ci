@@ -44,12 +44,6 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - name: Checkout ruyi-pytest-reports
-        uses: actions/checkout@v4
-        with:
-          repository: ruyisdk-test/ruyi-pytest-reports
-          path: ruyi-pytest-reports
-
       #- name: Free space on ARM runner
       #  run: |
       #    echo "Disk usage before cleanup:"
