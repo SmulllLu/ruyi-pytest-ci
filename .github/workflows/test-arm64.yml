@@ -71,6 +71,7 @@ jobs:
       - name: Build test image for ${{ matrix.distro }}
         run: |
           docker build \
+            --build-arg RUYI_VERSION="$RUYI_VERSION" \
             -f docker/distros/${{ matrix.distro }}.Dockerfile \
             -t ruyi-pytest:${{ matrix.distro }} .
 
